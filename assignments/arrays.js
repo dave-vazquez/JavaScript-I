@@ -54,60 +54,159 @@ let inventory = [{"id":1,"car_make":"Lincoln","car_model":"Navigator","car_year"
 {"id":50,"car_make":"Lincoln","car_model":"Town Car","car_year":1999}];
 
 
-// Example for loop:
+/**********************************************************************************
+*                                  CHALLENGE 1                                    *
+***********************************************************************************/
+// The dealer can't recall the information for a car with an id of 33 on his lot. 
+// Help the dealer find out which car has an id of 33 by logging the car's year, 
+// make, and model in the console log provided to you below:
 
-// arr = [1,2,3,4];
-// for (let i = 0; i < arr.length; i++) {
-//     arr[i]; // 1,2,3,4
-// }
+let car33 = inventory[33];
 
-// ==== Challenge 1 ====
-// The dealer can't recall the information for a car with an id of 33 on his lot. Help the dealer find out which car has an id of 33 by logging the car's year, make, and model in the console log provided to you below:
+printSolution(1, `Car 33 is a ${car33.car_year} ${car33.car_make} ${car33.car_model}`); 
 
-let car33;
-
-inventory.forEach(car => car.id === 33 ? car33 = car : car33 );
-
-console.log(`Car 33 is a ${car33.car_year} ${car33.car_make} ${car33.car_model}` );
-
-// ==== Challenge 2 ====
-// The dealer needs the information on the last car in their inventory.  What is the make and model of the last car in the inventory?  Log the make and model into the console.
-
+/**********************************************************************************
+*                                  CHALLENGE 2                                    *
+***********************************************************************************/
+// The dealer needs the information on the last car in their inventory.  What is 
+// the make and model of the last car in the inventory?  Log the make and model 
+// into the console.
 
 const lastCar = inventory[inventory.length - 1];
 
-console.log(`The last car is ${lastCar.car_make} ${lastCar.car_model}`);
+printSolution(2, `The last car is ${lastCar.car_make} ${lastCar.car_model}`); 
 
 
-// ==== Challenge 3 ====
-// The marketing team wants the car models listed alphabetically on the website. Sort all the car model names into alphabetical order and log the results in the console
+/**********************************************************************************
+*                                  CHALLENGE 3                                    *
+***********************************************************************************/
+// The marketing team wants the car models listed alphabetically on the website. 
+// Sort all the car model names into alphabetical order and log the results in 
+// the console
+
+let carModels = [];
+let unsorted = false;
+
+for(let i = 0; i < inventory.length; i++) 
+    carModels.push(inventory[i].car_model);
+
+do {
+    unsorted = false;
+    for(let i = 0; i < carModels.length - 1; i++) {
+        if(carModels[i] > carModels[i + 1]) {
+            let temp = carModels[i];
+            carModels[i] = carModels[i + 1];
+            carModels[i + 1] = temp;
+            unsorted = true;
+        }
+    }
+}
+while(unsorted);
+
+printSolution(3, carModels, 'Car Models in Alphabetical Order');
 
 
-const compareModels = (car1, car2) => {
-    if(car1.car_model < car2.car_model) return -1;
-    if(car1.car_model > car2.car_model) return 1;
-    return 0;
+    /*  
+        // alternative solution :
+
+        const compareModels = (car1, car2) => {
+            if(car1.car_model < car2.car_model) return -1;
+            if(car1.car_model > car2.car_model) return 1;
+            return 0;
+        }
+
+        let carModels = inventory.sort(compareModels).map(car => car.car_model);
+
+        printSolution(3, carModels);
+
+    */
+
+/**********************************************************************************
+*                                  CHALLENGE 4                                    *
+***********************************************************************************/
+// The accounting team needs all the years from every car on the lot. 
+// Create a new array from the dealer data containing only the car years 
+// and log the result in the console.
+
+let carYears = []
+
+for(let i = 0; i < inventory.length; i++) 
+    carYears.push(inventory[i].car_year);
+
+printSolution(4, carYears, 'All Car Years');
+
+    /*
+        // alternative solution:
+
+        let carYears = inventory.map(car => car.car_year);
+
+        printSolution(3, carYears, 'All Car Years\n');
+    */
+
+/**********************************************************************************
+*                                  CHALLENGE 5                                    *
+***********************************************************************************/
+// The car lot manager needs to find out how many cars are older than the 
+// year 2000. Using the carYears array you just created, find out how many 
+// cars were made before the year 2000 by populating the array oldCars and 
+// logging it's length.
+
+let oldCars = [];
+
+for(let i = 0; i < inventory.length; i++) {
+    if(inventory[i].car_year < 2000)
+        oldCars.push(inventory[i].car_year);
 }
 
-let carModels = inventory.sort(compareModels).map(car => car.car_model);
+printSolution(4, `There are ${oldCars.length} cars older than 2000`);
 
-console.log(carModels);
+    /*
+        // alternative solution:
 
+        let oldCars = carYears.filter(carYear => carYear < 2000).length;
 
-// ==== Challenge 4 ====
-// The accounting team needs all the years from every car on the lot. Create a new array from the dealer data containing only the car years and log the result in the console.
-let carYears = inventory.map(car => car.car_year);
-console.log(carYears);
-
-// ==== Challenge 5 ====
-// The car lot manager needs to find out how many cars are older than the year 2000. Using the carYears array you just created, find out how many cars were made before the year 2000 by populating the array oldCars and logging it's length.
-let oldCars = carYears.filter(carYear => carYear > 2000).length;
-console.log(oldCars); 
-
-// ==== Challenge 6 ====
-// A buyer is interested in seeing only BMW and Audi cars within the inventory.  Return an array that only contains BMW and Audi cars.  Once you have populated the BMWAndAudi array, use JSON.stringify() to show the results of the array in the console.
-let BMWAndAudi = JSON.stringify(inventory.filter(car => car.car_make === 'BMW' || car.car_make === 'Audi'));
-console.log(BMWAndAudi);
+        printSolution(3, carYears, `There are ${oldCars.length} cars older than 2000`);
+    */
 
 
+/**********************************************************************************
+*                                  CHALLENGE 6                                    *
+***********************************************************************************/
+// A buyer is interested in seeing only BMW and Audi cars within the inventory.  
+// Return an array that only contains BMW and Audi cars.  Once you have populated 
+// the BMWAndAudi array, use JSON.stringify() to show the results of the array in 
+// the console.
 
+
+let BMWAndAudi = [];
+
+for(let i = 0; i < inventory.length; i++) {
+    if(inventory[i].car_make === 'BMW' || inventory[i].car_make === 'Audi')
+        BMWAndAudi.push(inventory[i]);
+}
+
+printSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
+
+    /*  // alternative solution
+
+        let BMWAndAudi = JSON.stringify(inventory.filter(car => car.car_make === 'BMW' || car.car_make === 'Audi'));
+
+        printSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
+
+    */
+
+
+/**********************************************************************************
+*                                Print Solution                                   *
+***********************************************************************************/
+
+function printSolution(num, solution, message){
+    console.log(`/**********************************************************\n*                         CHALLENGE ${num}                     *\n***********************************************************/`);
+    
+    if(message) 
+        console.log(message + '\n');
+    
+    console.log(solution);
+    
+    console.log();
+}
