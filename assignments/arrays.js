@@ -63,7 +63,7 @@ let inventory = [{"id":1,"car_make":"Lincoln","car_model":"Navigator","car_year"
 
 let car33 = inventory[33];
 
-printSolution(1, `Car 33 is a ${car33.car_year} ${car33.car_make} ${car33.car_model}`); 
+logSolution(1, `Car 33 is a ${car33.car_year} ${car33.car_make} ${car33.car_model}`); 
 
 /**********************************************************************************
 *                                  CHALLENGE 2                                    *
@@ -74,8 +74,7 @@ printSolution(1, `Car 33 is a ${car33.car_year} ${car33.car_make} ${car33.car_mo
 
 const lastCar = inventory[inventory.length - 1];
 
-printSolution(2, `The last car is ${lastCar.car_make} ${lastCar.car_model}`); 
-
+logSolution(2, `The last car is ${lastCar.car_make} ${lastCar.car_model}`); 
 
 /**********************************************************************************
 *                                  CHALLENGE 3                                    *
@@ -90,7 +89,8 @@ let unsorted = false;
 for(let i = 0; i < inventory.length; i++) 
     carModels.push(inventory[i].car_model);
 
-do {
+
+do { // bubble sort
     unsorted = false;
     for(let i = 0; i < carModels.length - 1; i++) {
         if(carModels[i] > carModels[i + 1]) {
@@ -103,11 +103,9 @@ do {
 }
 while(unsorted);
 
-printSolution(3, carModels, 'Car Models in Alphabetical Order');
-
+logSolution(3, carModels, 'Car Models in Alphabetical Order');
 
     /*  
-        // alternative solution :
 
         const compareModels = (car1, car2) => {
             if(car1.car_model < car2.car_model) return -1;
@@ -117,7 +115,7 @@ printSolution(3, carModels, 'Car Models in Alphabetical Order');
 
         let carModels = inventory.sort(compareModels).map(car => car.car_model);
 
-        printSolution(3, carModels);
+        logSolution(3, carModels);
 
     */
 
@@ -133,14 +131,14 @@ let carYears = []
 for(let i = 0; i < inventory.length; i++) 
     carYears.push(inventory[i].car_year);
 
-printSolution(4, carYears, 'All Car Years');
+logSolution(4, carYears, 'All Car Years');
 
     /*
         // alternative solution:
 
         let carYears = inventory.map(car => car.car_year);
 
-        printSolution(3, carYears, 'All Car Years\n');
+        logSolution(3, carYears, 'All Car Years\n');
     */
 
 /**********************************************************************************
@@ -158,14 +156,14 @@ for(let i = 0; i < inventory.length; i++) {
         oldCars.push(inventory[i].car_year);
 }
 
-printSolution(4, `There are ${oldCars.length} cars older than 2000`);
+logSolution(4, `There are ${oldCars.length} cars older than 2000`);
 
     /*
         // alternative solution:
 
         let oldCars = carYears.filter(carYear => carYear < 2000).length;
 
-        printSolution(3, carYears, `There are ${oldCars.length} cars older than 2000`);
+        logSolution(3, carYears, `There are ${oldCars.length} cars older than 2000`);
     */
 
 
@@ -185,22 +183,22 @@ for(let i = 0; i < inventory.length; i++) {
         BMWAndAudi.push(inventory[i]);
 }
 
-printSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
+logSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
 
     /*  // alternative solution
 
         let BMWAndAudi = JSON.stringify(inventory.filter(car => car.car_make === 'BMW' || car.car_make === 'Audi'));
 
-        printSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
+        logSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
 
     */
 
 
 /**********************************************************************************
-*                                Print Solution                                   *
+*                                Print Solution  (I got bored)                    *
 ***********************************************************************************/
 
-function printSolution(num, solution, message){
+function logSolution(num, solution, message){
     console.log(`/**********************************************************\n*                         CHALLENGE ${num}                     *\n***********************************************************/`);
     
     if(message) 
