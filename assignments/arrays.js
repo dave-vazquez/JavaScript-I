@@ -61,7 +61,7 @@ let inventory = [{"id":1,"car_make":"Lincoln","car_model":"Navigator","car_year"
 // Help the dealer find out which car has an id of 33 by logging the car's year, 
 // make, and model in the console log provided to you below:
 
-let car33 = inventory[33];
+let car33 = inventory[32];
 
 logSolution(1, `Car 33 is a ${car33.car_year} ${car33.car_make} ${car33.car_model}`); 
 
