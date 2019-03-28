@@ -106,6 +106,7 @@ while(unsorted);
 logSolution(3, carModels, 'Car Models in Alphabetical Order');
 
     /*  
+        // alternative solution:
 
         const compareModels = (car1, car2) => {
             if(car1.car_model < car2.car_model) return -1;
@@ -138,7 +139,7 @@ logSolution(4, carYears, 'All Car Years');
 
         let carYears = inventory.map(car => car.car_year);
 
-        logSolution(3, carYears, 'All Car Years\n');
+        logSolution(4, carYears, 'All Car Years\n');
     */
 
 /**********************************************************************************
@@ -158,13 +159,13 @@ for(let i = 0; i < inventory.length; i++) {
 
 logSolution(4, `There are ${oldCars.length} cars older than 2000`);
 
-    /*
-        // alternative solution:
+        /*
+            // alternative solution:
 
-        let oldCars = carYears.filter(carYear => carYear < 2000).length;
+            let numOldCars = carYears.filter(carYear => carYear < 2000).length;
 
-        logSolution(3, carYears, `There are ${oldCars.length} cars older than 2000`);
-    */
+            logSolution(5, `There are ${numOldCars} cars older than 2000`);
+        */
 
 
 /**********************************************************************************
@@ -183,13 +184,14 @@ for(let i = 0; i < inventory.length; i++) {
         BMWAndAudi.push(inventory[i]);
 }
 
-logSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
+logSolution(6, JSON.stringify(BMWAndAudi), 'Stringified Results:');
 
-    /*  // alternative solution
+    /*  
+        // alternative solution
 
         let BMWAndAudi = JSON.stringify(inventory.filter(car => car.car_make === 'BMW' || car.car_make === 'Audi'));
 
-        logSolution(4, JSON.stringify(BMWAndAudi), 'Stringified Results');
+        logSolution(6, JSON.stringify(BMWAndAudi), 'Stringified Results');
 
     */
 
